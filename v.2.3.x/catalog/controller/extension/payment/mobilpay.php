@@ -46,7 +46,7 @@ class ControllerExtensionPaymentMobilpay extends Controller {
 			#detalii cu privire la plata: moneda, suma, descrierea
 			$objPmReqCard->invoice = new Mobilpay_Payment_Invoice();
 			$objPmReqCard->invoice->currency	= $order_info['currency_code'];
-			$objPmReqCard->invoice->amount		= $order_info['total'];
+			$objPmReqCard->invoice->amount		= $order_info['total']*$order_info['currency_value'];
 			$objPmReqCard->invoice->installments= '1';
 			$objPmReqCard->invoice->details		= 'Plata cu card-ul';						
 			
