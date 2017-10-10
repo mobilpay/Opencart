@@ -1,0 +1,9 @@
+<form action="{{ action }}" method="post" id="payment">
+  <input type="hidden" name="env_key" value="{{ env_key }}"/>
+  <input type="hidden" name="data" value="{{ data }}"/>
+  <div class="buttons">
+    <div class="pull-right">
+    <a onclick="$('#payment').submit();" class="btn btn-primary">{{ button_confirm }}</a>
+    </div>
+  </div>
+</form>
