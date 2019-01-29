@@ -139,7 +139,7 @@
 	<div class="form-group">
 	 <label class="col-sm-2 control-label" for="input-total"><span data-toggle="tooltip" title="<?php echo $help_total; ?>"><?php echo $entry_total; ?></span></label>
 	 <div class="col-sm-10">
-	  <input type="text" name="worldpay_total" value="<?php echo $mobilpay_total; ?>" placeholder="<?php echo $entry_total; ?>" id="input-total" class="form-control" />
+	  <input type="text" name="mobilpay_total" value="<?php echo $mobilpay_total; ?>" placeholder="<?php echo $entry_total; ?>" id="input-total" class="form-control" />
 	 </div>
 	</div>	  
           <div class="form-group">
