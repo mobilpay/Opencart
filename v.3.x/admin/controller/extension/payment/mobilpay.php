@@ -18,38 +18,6 @@ class ControllerExtensionPaymentMobilpay extends Controller {
 			$this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', true));
 		}
 
-		$data['heading_title'] = $this->language->get('heading_title');
-		
-		$data['text_edit'] = $this->language->get('text_edit');
-		$data['text_enabled'] = $this->language->get('text_enabled');
-		$data['text_disabled'] = $this->language->get('text_disabled');
-		$data['text_all_zones'] = $this->language->get('text_all_zones');
-		$data['text_yes'] = $this->language->get('text_yes');
-		$data['text_no'] = $this->language->get('text_no');
-		$data['text_authorization'] = $this->language->get('text_authorization');
-		$data['text_sale'] = $this->language->get('text_sale');
-		
-		$data['entry_signature'] = $this->language->get('entry_signature');
-		$data['entry_test'] = $this->language->get('entry_test');	
-		$data['entry_total'] = $this->language->get('entry_total');
-		$data['help_total'] = $this->language->get('help_total');
-		
-		$data['entry_order_status'] = $this->language->get('entry_order_status');
-		$data['entry_order_status_confirmed_pending'] = $this->language->get('entry_order_status_confirmed_pending');
-		$data['entry_order_status_paid_pending'] = $this->language->get('entry_order_status_paid_pending');
-		$data['entry_order_status_paid'] = $this->language->get('entry_order_status_paid');
-		$data['entry_order_status_canceled'] = $this->language->get('entry_order_status_canceled');
-		$data['entry_order_status_credit'] = $this->language->get('entry_order_status_credit');		
-		
-		$data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
-		$data['entry_status'] = $this->language->get('entry_status');
-		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
-		
-		$data['button_save'] = $this->language->get('button_save');
-		$data['button_cancel'] = $this->language->get('button_cancel');
-
-		$data['tab_general'] = $this->language->get('tab_general');
-
  		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
 		} else {
