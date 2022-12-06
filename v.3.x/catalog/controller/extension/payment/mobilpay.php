@@ -86,12 +86,6 @@ class ControllerExtensionPaymentMobilpay extends Controller {
 		
 		$data['env_key'] = $objPmReqCard->getEnvKey();
 		$data['data'] = $objPmReqCard->getEncData();
-		// var_dump($data['env_key']);die();
-/*		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/payment/mobilpay.tpl')) {
-			return $this->load->view($this->config->get('config_template') . '/template/payment/mobilpay.tpl', $data);
-		} else {
-			return $this->load->view('default/template/payment/mobilpay.tpl', $data);
-		}	 */
 		return $this->load->view('extension/payment/mobilpay', $data);
 	}
 	
