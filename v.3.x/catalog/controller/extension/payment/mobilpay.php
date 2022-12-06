@@ -214,10 +214,8 @@ class ControllerExtensionPaymentMobilpay extends Controller {
 	}
 	
 	public function status() {
-		$order_id = $this->session->data['order_id'];
-
-		if (isset($order_id)) {
-		
+		$order_id = $_GET['orderId'];
+		if (isset($order_id)) {		
 			$this->load->model('checkout/order');					
 			$order_info = $this->model_checkout_order->getOrder($order_id);
 
