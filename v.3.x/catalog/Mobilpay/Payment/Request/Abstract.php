@@ -324,8 +324,9 @@ abstract class Mobilpay_Payment_Request_Abstract
 		$srcData = $this->_xmlDoc->saveXML();
 		$publicKeys	= array($publicKey);
 		$encData 	= null;
-		$envKeys 	= null;
-		$result 	= openssl_seal($srcData, $encData, $envKeys, $publicKeys);
+		$envKeys 	= array();
+		$cipher_algo 	= 'RC4';
+		$result 	= openssl_seal($srcData, $encData, $envKeys, $publicKeys, $cipher_algo);
 		if($result === false)
 		{
 			$this->outEncData	= null;
