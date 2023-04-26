@@ -42,6 +42,7 @@ class ControllerExtensionPaymentMobilpay extends Controller {
 			$objPmReqCard->returnUrl 			= $this->url->link('extension/payment/mobilpay/status');
 			
 			$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
+
 			
 			#detalii cu privire la plata: moneda, suma, descrierea
 			$objPmReqCard->invoice = new Mobilpay_Payment_Invoice();
@@ -77,6 +78,31 @@ class ControllerExtensionPaymentMobilpay extends Controller {
 			$shippingAddress->email			= $order_info['email'];
 			$shippingAddress->mobilePhone	= $order_info['telephone'];
 			$objPmReqCard->invoice->setShippingAddress($shippingAddress);
+
+             /**
+             * Cart Summary
+             */
+            $cartProducts =  $this->cart->getProducts();
+            $cartSummaryArr = array();
+           
+            foreach($cartProducts as $productItem) {
+                $product['name'] = $productItem['name'];
+                $product['price'] = number_format($productItem['price'], 2, '.', '');;
+                $product['quantity'] = $productItem['quantity'];
+                $product['short_description'] = substr($productItem['model'], 0, 100);
+                $cartSummaryArr[] = $product;
+            }
+
+            $cartSummaryJson = json_encode($cartSummaryArr);
+
+            /**
+             * Set request params
+             */
+            $objPmReqCard->params = array(
+                'openCart'=> VERSION,
+                'cartSummary' => $cartSummaryJson 
+            );
+
 			$objPmReqCard->encrypt($x509FilePath);
 
 		}
