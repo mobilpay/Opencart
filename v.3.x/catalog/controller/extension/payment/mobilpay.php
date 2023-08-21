@@ -99,7 +99,7 @@ class ControllerExtensionPaymentMobilpay extends Controller {
              * Set request params
              */
             $objPmReqCard->params = array(
-				'vesion' => "1.0.0",
+				'version' => "1.0.0",
 				'api' => "1.0",
                 'platform'=> "openCart " . VERSION,
                 'cartSummary' => $cartSummaryJson 
