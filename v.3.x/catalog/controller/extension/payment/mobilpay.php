@@ -114,14 +114,28 @@ class ControllerExtensionPaymentMobilpay extends Controller {
 		
 		$data['env_key'] = $objPmReqCard->getEnvKey();
 		$data['data'] = $objPmReqCard->getEncData();
+		$data['cipher'] = $objPmReqCard->getCipher();
+		$data['iv'] =  $objPmReqCard->getIv();
 		return $this->load->view('extension/payment/mobilpay', $data);
 	}
 	
 	public function callback() {
-	
+		
+		//var_dump($_POST);
+
 		$errorCode 		= 0;
 		$errorType		= Mobilpay_Payment_Request_Abstract::CONFIRM_ERROR_TYPE_NONE;
 		$errorMessage	= '';
+		$cipher     = 'rc4';
+		$iv         = null;
+		if(array_key_exists('cipher', $_POST))
+		{
+    		$cipher = $_POST['cipher'];
+    		if(array_key_exists('iv', $_POST))
+    		{
+        		$iv = $_POST['iv'];
+    		}
+		}
 
 		if (strcasecmp($_SERVER['REQUEST_METHOD'], 'post') == 0)
 		{
@@ -140,7 +154,7 @@ class ControllerExtensionPaymentMobilpay extends Controller {
 				// var_dump($privateKeyFilePath);
 				try
 				{
-					$objPmReq = Mobilpay_Payment_Request_Abstract::factoryFromEncrypted($_POST['env_key'], $_POST['data'], $privateKeyFilePath);
+					$objPmReq = Mobilpay_Payment_Request_Abstract::factoryFromEncrypted($_POST['env_key'], $_POST['data'], $privateKeyFilePath, null, $cipher, $iv);
 
 					$order_id = $objPmReq->orderId;
 					$this->load->model('checkout/order');
